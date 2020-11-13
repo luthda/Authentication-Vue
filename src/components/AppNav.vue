@@ -4,7 +4,7 @@
       Home
     </router-link>
 
-    <router-link to="/dashboard">
+    <router-link v-if="loggedIn" to="/dashboard">
       Dashboard
     </router-link>
 

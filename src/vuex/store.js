@@ -16,7 +16,7 @@ export default new Vuex.Store({
         userData.token
       }`
     },
-    LOGOUT () {
+    CLEAR_USER_DATA () {
       localStorage.removeItem('user')
       location.reload()
     }
@@ -33,7 +33,7 @@ export default new Vuex.Store({
       })
     },
     logout ({ commit }) {
-      commit('LOGOUT')
+      commit('CLEAR_USER_DATA')
     }
   },
   getters: {
