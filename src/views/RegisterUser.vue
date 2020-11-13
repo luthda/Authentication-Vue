@@ -20,6 +20,12 @@
         Register
       </button>
 
+      <ul>
+        <li v-for="(error, index) in errors" :key="index">
+          {{ error }}
+        </li>
+      </ul>
+
       <router-link to="/login">
         Have an account already? Login.
       </router-link>
@@ -33,7 +39,8 @@ export default {
     return {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      error: null
     }
   },
   methods: {
@@ -46,11 +53,10 @@ export default {
         .then(() => {
           this.$router.push({ name: 'dashboard' })
         })
+        .catch(err => {
+          this.errors = err.response.data.error
+        })
     }
   }
 }
 </script>
-
-<style scoped>
-
-</style>
