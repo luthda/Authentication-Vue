@@ -14,20 +14,13 @@
       <label for="password">
         Password:
       </label>
-      <input v-model="password" type="password" name value>
+      <input v-model="password" type="password" name="password" value>
 
       <button type="submit" name="button">
         Register
       </button>
-
-      <ul>
-        <li v-for="(error, index) in errors" :key="index">
-          {{ error }}
-        </li>
-      </ul>
-
       <router-link to="/login">
-        Have an account already? Login.
+        Already have an account? Login.
       </router-link>
     </form>
   </div>
@@ -39,24 +32,24 @@ export default {
     return {
       name: '',
       email: '',
-      password: '',
-      error: null
+      password: ''
     }
   },
   methods: {
     register () {
-      this.$store.dispatch('register', {
-        name: this.name,
-        email: this.email,
-        password: this.password
-      })
+      this.$store
+        .dispatch('register', {
+          name: this.name,
+          email: this.email,
+          password: this.password
+        })
         .then(() => {
           this.$router.push({ name: 'dashboard' })
-        })
-        .catch(err => {
-          this.errors = err.response.data.error
         })
     }
   }
 }
 </script>
+
+<style scoped>
+</style>
